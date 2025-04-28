@@ -21,8 +21,10 @@ const alunos = [
     },
 ];
 
+const AlunosService = new AlunosService();
+
 alunos.forEach(aluno => {
-    
+    AlunosService.add(new AlunoModel(aluno));
 });
 
 const htmlHeader = document.createElement('tr')
