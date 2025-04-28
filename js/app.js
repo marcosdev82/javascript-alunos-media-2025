@@ -6,14 +6,9 @@ alunos.forEach(aluno => {
 });
 
 const htmlHeader = document.createElement('tr')
-
-
 htmlHeader.innerHTML = `<td class="px-5 py-3 text-left">Nome</td>`
-
 const htmlHeaderMaterias = Object.keys(alunos[0].notas).map(materia => `<td class="px-5 py-3 text-left">${materia}</td>`).join('')
-
 htmlHeader.innerHTML += htmlHeaderMaterias
-
 document.querySelector('[data-table="alunos"] thead').appendChild(htmlHeader)
 
 function render() { 
