@@ -27,7 +27,27 @@ alunos.forEach(aluno => {
 })
 
 document.querySelector('#form-add').addEventListener('submit', function(e) {
-    e.preventDefault()
-    const nome = document.getElementById('firstName').value
-    console.log(nome)
-})
+    e.preventDefault();
+
+    const nome = document.getElementById('firstName').value;
+
+    let newAluno = {
+        _id: 0,
+        nome,
+        notas: {
+          portugues: [1, 1, 2, 2],
+          matematica: [2, 2, 2, 2],
+          historia: [2, 2, 3, 3],
+          ciencias: [3, 3, 3, 3],
+        },
+        media: {} // já define media aqui
+    };
+
+    for (let materia in newAluno.notas) {
+        newAluno.media[materia] = avarege(...newAluno.notas[materia]);
+    }
+
+    alunos.push(newAluno);
+
+    console.log(nome);
+});
