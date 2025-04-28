@@ -7,7 +7,7 @@ class AlunosService {
         if (!aluno instanceof AlunosModel) {
             throw new Error('Aluno não é uma instância de AlunosModel');
         }
-        this.push(aluno);
+        this.alunos.push(aluno);
     }
 
     edit(aluno) {
