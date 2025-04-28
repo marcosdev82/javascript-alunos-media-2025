@@ -25,3 +25,9 @@ alunos.forEach(aluno => {
     htmlRow.innerHTML += htmlRowMaterias
     document.querySelector('[data-table="alunos"] tbody').appendChild(htmlRow)
 })
+
+document.querySelector('#form-add').addEventListener('submit', function(e) {
+    e.preventDefault()
+    const nome = document.getElementById('firstName').value
+    console.log(nome)
+})
