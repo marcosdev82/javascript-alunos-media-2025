@@ -14,5 +14,4 @@ class AlunosService {
         return aluno;
     }
 
-
 }

@@ -21,10 +21,10 @@ const alunos = [
     },
 ];
 
-const AlunosService = new AlunosService();
+const alunosService = new AlunosService();
 
 alunos.forEach(aluno => {
-    AlunosService.add(new AlunoModel(aluno));
+    alunosService.add(new AlunosModel(aluno));
 });
 
 // const htmlHeader = document.createElement('tr')
