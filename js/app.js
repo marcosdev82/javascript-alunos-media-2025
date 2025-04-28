@@ -16,15 +16,21 @@ htmlHeader.innerHTML += htmlHeaderMaterias
 
 document.querySelector('[data-table="alunos"] thead').appendChild(htmlHeader)
 
-alunos.forEach(aluno => {
-    const htmlRow = document.createElement('tr')
-    htmlRow.className = 'odd:bg-white even:bg-gray-100';
-    htmlRow.innerHTML = `<td class="px-6 py-3 text-left">${aluno.nome}</td>`
-    // console.log(Object.keys(aluno.notas)) - atenção para o uso de Object.keys, que retorna um array com as chaves do objeto
-    const htmlRowMaterias = Object.keys(aluno.notas).map(materia => `<td>${aluno.media[materia]}</td>`).join('')
-    htmlRow.innerHTML += htmlRowMaterias
-    document.querySelector('[data-table="alunos"] tbody').appendChild(htmlRow)
-})
+function render() { 
+    // limpar tudo para atualizar linha
+    document.querySelector('[data-table="alunos"] tbody').innerHTML = ''
+
+    alunos.forEach(aluno => {
+        const htmlRow = document.createElement('tr')
+        htmlRow.className = 'odd:bg-white even:bg-gray-100';
+        htmlRow.innerHTML = `<td class="px-6 py-3 text-left">${aluno.nome}</td>`
+        // console.log(Object.keys(aluno.notas)) - atenção para o uso de Object.keys, que retorna um array com as chaves do objeto
+        const htmlRowMaterias = Object.keys(aluno.notas).map(materia => `<td>${aluno.media[materia]}</td>`).join('')
+        htmlRow.innerHTML += htmlRowMaterias
+        document.querySelector('[data-table="alunos"] tbody').appendChild(htmlRow)
+    })
+}
+render()
 
 document.querySelector('#form-add').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -49,5 +55,6 @@ document.querySelector('#form-add').addEventListener('submit', function(e) {
 
     alunos.push(newAluno);
 
-    console.log(nome);
+    render();
+
 });
