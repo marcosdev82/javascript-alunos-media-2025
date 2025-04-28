@@ -4,4 +4,13 @@ alunos.forEach(aluno => {
         aluno.media[materia] = avarege(...aluno.notas[materia])
     }
 });
-console.log(alunos)
+
+const htmlHeader = document.createElement('tr')
+htmlHeader.innerHTML = "<td>Nome</td>"
+
+const htmlHeaderMaterias = Object.keys(alunos[0].notas).map(materia => `<td>${materia}</td>`).join('')
+
+htmlHeader.innerHTML += htmlHeaderMaterias
+// console.log(htmlHeaderMaterias)
+
+document.querySelector('[data-table="alunos"] thead').appendChild(htmlHeader)
