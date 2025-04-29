@@ -27,6 +27,9 @@ alunos.forEach(aluno => {
     alunosService.add(new AlunosModel(aluno));
 });
 
+const alunosView = new AlunosView(document.querySelector('[data-table="alunos"]'));
+console.log(alunosView)
+
 // const htmlHeader = document.createElement('tr')
 // htmlHeader.innerHTML = `<td class="px-5 py-3 text-left">Nome</td>`
 // const htmlHeaderMaterias = Object.keys(alunos[0].notas).map(materia => `<td class="px-5 py-3 text-left">${materia}</td>`).join('')
