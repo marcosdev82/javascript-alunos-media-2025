@@ -28,7 +28,8 @@ alunos.forEach(aluno => {
 });
 
 const alunosView = new AlunosView(document.querySelector('[data-table="alunos"]'));
-console.log(alunosView)
+
+const alunosController = new AlunosController(alunosService, alunosView);
 
 // const htmlHeader = document.createElement('tr')
 // htmlHeader.innerHTML = `<td class="px-5 py-3 text-left">Nome</td>`
