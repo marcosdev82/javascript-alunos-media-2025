@@ -31,6 +31,17 @@ const alunosView = new AlunosView(document.querySelector('[data-table="alunos"]'
 
 const alunosController = new AlunosController(alunosService, alunosView);
 
+document.querySelector('#form-add').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nome = document.getElementById('firstName').value;
+
+    alunosController.add({ nome })
+});
+
+
+
+
+
 // const htmlHeader = document.createElement('tr')
 // htmlHeader.innerHTML = `<td class="px-5 py-3 text-left">Nome</td>`
 // const htmlHeaderMaterias = Object.keys(alunos[0].notas).map(materia => `<td class="px-5 py-3 text-left">${materia}</td>`).join('')
