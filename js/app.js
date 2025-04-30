@@ -40,9 +40,7 @@ document.querySelector('#form-add').addEventListener('submit', function(e) {
 
 document.querySelector('tbody').addEventListener('click', function(e) {
     e.preventDefault();
-    if(e.target.dataset.action === 'edit'){
-        console.log(e.target.dataset.notaAluno);
-    }
+    alunosView.renderBoxEdit(e)
 
     // const nome = document.getElementById('firstName').value;
 

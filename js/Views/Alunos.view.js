@@ -47,7 +47,6 @@ class AlunosView {
                             aluno.media?.[materia] !== undefined
                             ?  `<a href="#" data-nota-aluno="${aluno.media[materia]}" data-action="edit" class="position-relative text-gray-500 hover:text-blue-500 hover:border-b hover:border-dashed hover:border-blue-500">
                                 ${aluno.media[materia]}
-
                                 </a>`
                             : btn
                         }
@@ -69,6 +68,14 @@ class AlunosView {
             htmlRow.innerHTML = htmlMedia;
             this.tableBody.appendChild(htmlRow);
         });
+    }
+
+    renderBoxEdit(event) {
+        const btnEdit = event.target
+        if(btnEdit.dataset.action === 'edit'){
+             const  notaAluno = btnEdit.notaAluno; 
+             btnEdit.style.display = 'none'
+        }
     }
 
 }
