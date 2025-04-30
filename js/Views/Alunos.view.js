@@ -29,7 +29,7 @@ class AlunosView {
             htmlRow.className = 'odd:bg-white even:bg-gray-100';
     
             let htmlMedia = `<td class="px-6 py-3 text-left">${aluno.nome}</td>`;
-            const btn = `<a href="#" data-nota-aluno="${aluno.nome}" class="text-gray-500 hover:text-blue-500 hover:border-b hover:border-dashed hover:border-blue-500">Incluir nota</a>`;
+            const btn = `<a href="#" data-nota-aluno="${aluno.nome}" data-action="edit" class="text-gray-500 hover:text-blue-500 hover:border-b hover:border-dashed hover:border-blue-500">Incluir notas</a>`;
     
             const notas = aluno.nota || {};
             let encontrado = false;
@@ -42,23 +42,25 @@ class AlunosView {
     
             if (encontrado) {
                 this.materias.forEach(materia => {
-                    htmlMedia += `<td class="px-6 py-3 text-left">
+                    htmlMedia += `<td class="px-6 py-3 text-lef position-relative">
                         ${
                             aluno.media?.[materia] !== undefined
-                            ?  `<a href="#" data-nota-aluno="${aluno.media[materia]}" class="position-relative text-gray-500 hover:text-blue-500 hover:border-b hover:border-dashed hover:border-blue-500">
+                            ?  `<a href="#" data-nota-aluno="${aluno.media[materia]}" data-action="edit" class="position-relative text-gray-500 hover:text-blue-500 hover:border-b hover:border-dashed hover:border-blue-500">
                                 ${aluno.media[materia]}
 
                                 </a>`
                             : btn
                         }
-                        <div class="position-absolute top-0 left-0 w-full h-full bg-gray-300 bg-opacity-50 rounded-md" style="display: none;">
+                        <div class="position-absolute top-0 left-0 w-full h-full bg-gray-300 bg-opacity-50 rounded-md flex gap-2 p-4" style="display: none;">
                             <input type="text"
-                                class="w-full h-full bg-gray-300 text-white border-none outline-none p-2 rounded-md"
+                                class="flex-1 bg-gray-300 text-white border-none outline-none p-2 rounded-md"
                                 value="${aluno.media[materia]}"
                                 placeholder="Digite a nota do aluno"
                             />
+                            <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md">Salvar</button>
                         </div>
-                    </td>`;
+
+                    </td>`; 
                 });
             } else {
                 htmlMedia += `<td colspan="${this.materias.length}" class="px-6 py-3 text-left">${btn}</td>`;
