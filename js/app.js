@@ -40,7 +40,7 @@ document.querySelector('#form-add').addEventListener('submit', function(e) {
 
 document.querySelector('tbody').addEventListener('click', function(e) {
     e.preventDefault();
-    alunosView.renderBoxEdit(e)
+    alunosView.boxEdit(e);
 
     // const nome = document.getElementById('firstName').value;
 

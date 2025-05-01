@@ -4,8 +4,6 @@ class AlunosView {
         this.tableHeader = this.tableList.querySelector('thead');
         this.tableBody = this.tableList.querySelector('tbody');
         this.materias = ["portugues", "matematica", "historia", "ciencias"];
-        this.boxEdit = '';
-
         this.renderHeader();
     }
 
@@ -50,15 +48,6 @@ class AlunosView {
                                 </a>`
                             : btn
                         }
-                        <div class="position-absolute top-0 left-0 w-full h-full bg-gray-300 bg-opacity-50 rounded-md flex gap-2 p-4" style="display: none;">
-                            <input type="text"
-                                class="flex-1 bg-gray-300 text-white border-none outline-none p-2 rounded-md"
-                                value="${aluno.media[materia]}"
-                                placeholder="Digite a nota do aluno"
-                            />
-                            <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md">Salvar</button>
-                        </div>
-
                     </td>`; 
                 });
             } else {
@@ -70,11 +59,29 @@ class AlunosView {
         });
     }
 
-    renderBoxEdit(event) {
+    renderBoxEdit(notaAluno) {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = `<div id="boxEdit" class="position-absolute top-0 left-0 w-full h-full bg-gray-300 bg-opacity-50 rounded-md flex gap-2 p-4" style="display: none;">
+            <input type="text"
+                class="flex-1 bg-gray-300 text-white border-none outline-none p-2 rounded-md"
+                value="${notaAluno}"     
+                placeholder="Digite a nota do aluno"
+            />
+            <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md">Salvar</button>
+        </div>`;
+        return wrapper.firstElementChild;
+    }
+    
+
+    boxEdit(event) {
         const btnEdit = event.target
         if(btnEdit.dataset.action === 'edit'){
-             const  notaAluno = btnEdit.notaAluno; 
-             btnEdit.style.display = 'none'
+            const  notaAluno = btnEdit.dataset.notaAluno; 
+            btnEdit.style.display = 'none'
+
+            btnEdit.after(this.renderBoxEdit(notaAluno));
+            const boxEdit = btnEdit.nextElementSibling
+            boxEdit.style.display = 'flex'  
         }
     }
 
