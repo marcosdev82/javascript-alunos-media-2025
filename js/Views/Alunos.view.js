@@ -4,6 +4,7 @@ class AlunosView {
         this.tableHeader = this.tableList.querySelector('thead');
         this.tableBody = this.tableList.querySelector('tbody');
         this.materias = ["portugues", "matematica", "historia", "ciencias"];
+        this.boxAberto = null;
         this.renderHeader();
     }
 
@@ -43,7 +44,7 @@ class AlunosView {
                     htmlMedia += `<td class="px-6 py-3 text-lef position-relative">
                         ${
                             aluno.media?.[materia] !== undefined
-                            ?  `<a href="#" data-nota-aluno="${aluno.media[materia]}" data-action="edit" class="position-relative text-gray-500 hover:text-blue-500 hover:border-b hover:border-dashed hover:border-blue-500">
+                            ?  `<a href="#" id="edit" data-nota-aluno="${aluno.media[materia]}" data-action="edit" class="position-relative text-gray-500 hover:text-blue-500 hover:border-b hover:border-dashed hover:border-blue-500">
                                 ${aluno.media[materia]}
                                 </a>`
                             : btn
@@ -71,18 +72,27 @@ class AlunosView {
         </div>`;
         return wrapper.firstElementChild;
     }
-    
 
     boxEdit(event) {
-        const btnEdit = event.target
-        if(btnEdit.dataset.action === 'edit'){
-            const  notaAluno = btnEdit.dataset.notaAluno; 
-            btnEdit.style.display = 'none'
+        const btnEdit = event.target;
+    
+        if (btnEdit.dataset.action === 'edit') {
+            if (this.boxAberto) {
+                this.boxAberto.remove();
+                if (this.btnAnterior) this.btnAnterior.style.display = 'inline';
+            }
 
-            btnEdit.after(this.renderBoxEdit(notaAluno));
-            const boxEdit = btnEdit.nextElementSibling
-            boxEdit.style.display = 'flex'  
+            const  notaAluno = btnEdit.dataset.notaAluno; 
+            const boxElement = this.renderBoxEdit(notaAluno);
+            boxElement.style.display = 'flex';
+    
+            btnEdit.style.display = 'none';
+            btnEdit.after(boxElement);
+    
+            this.boxAberto = boxElement;
+            this.btnAnterior = btnEdit;
         }
     }
+    
 
 }
