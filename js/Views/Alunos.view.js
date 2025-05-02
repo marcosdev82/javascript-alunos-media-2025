@@ -28,7 +28,7 @@ class AlunosView {
             htmlRow.className = 'odd:bg-white even:bg-gray-100';
     
             let htmlMedia = `<td class="px-6 py-3 text-left">${aluno.nome}</td>`;
-            const btn = `<a href="#" data-nota-aluno="${aluno.nome}" data-action="edit" class="text-gray-500 hover:text-blue-500 hover:border-b hover:border-dashed hover:border-blue-500">Incluir notas</a>`;
+            const btn = `<a href="#" data-nota-aluno="${aluno.nome}" class="text-gray-500 hover:text-blue-500 hover:border-b hover:border-dashed hover:border-blue-500">Incluir notas</a>`;
     
             const notas = aluno.nota || {};
             let encontrado = false;
@@ -64,11 +64,11 @@ class AlunosView {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = `<div id="boxEdit" class="position-absolute top-0 left-0 w-full h-full bg-gray-300 bg-opacity-50 rounded-md flex gap-2 p-4" style="display: none;">
             <input type="text"
-                class="flex-1 bg-gray-300 text-white border-none outline-none p-2 rounded-md"
+                class="flex-1 bg-gray-300 text-black border-none outline-none p-2 rounded-md"
                 value="${notaAluno}"     
-                placeholder="Digite a nota do aluno"
+                placeholder="${notaAluno}"
             />
-            <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md">Salvar</button>
+            <button data-action="salvar" type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md">Salvar</button>
         </div>`;
         return wrapper.firstElementChild;
     }
@@ -85,7 +85,7 @@ class AlunosView {
             const  notaAluno = btnEdit.dataset.notaAluno; 
             const boxElement = this.renderBoxEdit(notaAluno);
             boxElement.style.display = 'flex';
-    
+
             btnEdit.style.display = 'none';
             btnEdit.after(boxElement);
     
@@ -94,5 +94,4 @@ class AlunosView {
         }
     }
     
-
 }

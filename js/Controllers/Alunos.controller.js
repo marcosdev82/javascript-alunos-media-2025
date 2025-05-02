@@ -9,4 +9,9 @@ class AlunosController {
         this.service.add(new AlunosModel(aluno))
         this.view.renderTbody(this.service.alunos)   
     }
+
+    update(aluno) {
+        this.service.edit(aluno)
+        this.view.alunosView(this.service.alunos)   
+    }
 }
