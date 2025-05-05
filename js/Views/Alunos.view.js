@@ -44,7 +44,7 @@ class AlunosView {
                     htmlMedia += `<td class="px-6 py-3 text-lef position-relative">
                         ${
                             aluno.media?.[materia] !== undefined
-                            ?  `<a href="#" id="edit" data-nota-aluno="${aluno.media[materia]}" data-action="edit" class="position-relative text-gray-500 hover:text-blue-500 hover:border-b hover:border-dashed hover:border-blue-500">
+                            ?  `<a href="#" id="edit" data-nota-aluno="${aluno.media[materia]}" data-aluno-id="${aluno._id}" data-action="edit" class="position-relative text-gray-500 hover:text-blue-500 hover:border-b hover:border-dashed hover:border-blue-500">
                                 ${aluno.media[materia]}
                                 </a>`
                             : btn
