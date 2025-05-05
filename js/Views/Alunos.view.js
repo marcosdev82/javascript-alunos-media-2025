@@ -62,36 +62,55 @@ class AlunosView {
 
     renderBoxEdit(notaAluno) {
         const wrapper = document.createElement('div');
-        wrapper.innerHTML = `<div id="boxEdit" class="position-absolute top-0 left-0 w-full h-full bg-gray-300 bg-opacity-50 rounded-md flex gap-2 p-4" style="display: none;">
-            <input type="text"
-                class="flex-1 bg-gray-300 text-black border-none outline-none p-2 rounded-md"
-                value="${notaAluno}"     
-                placeholder="${notaAluno}"
-            />
-            <button data-action="salvar" type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md">Salvar</button>
-        </div>`;
+        wrapper.innerHTML = `
+            <form class="boxEdit position-absolute top-0 left-0 w-full h-full bg-gray-300 bg-opacity-50 rounded-md flex gap-2 p-4" style="display: none;" method="POST" >
+                <input type="text"
+                    class="flex-1 bg-gray-300 text-black border-none outline-none p-2 rounded-md"
+                    name="nota"
+                    value="${notaAluno}"     
+                    placeholder="${notaAluno}"
+                />
+                <button data-action="save" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Salvar</button>
+            </form>`;
         return wrapper.firstElementChild;
+    }
+
+    btnSave() {
+        
+        this.boxAberto.addEventListener('click', function (e) {
+            if (e.target.dataset.action === 'save') {
+                e.preventDefault();
+                console.log('Submit delegado funcionando', e.target);
+            }
+        });
     }
 
     boxEdit(event) {
         const btnEdit = event.target;
     
         if (btnEdit.dataset.action === 'edit') {
+            // Remove box aberto anterior
             if (this.boxAberto) {
                 this.boxAberto.remove();
                 if (this.btnAnterior) this.btnAnterior.style.display = 'inline';
             }
-
-            const  notaAluno = btnEdit.dataset.notaAluno; 
+    
+            const notaAluno = btnEdit.dataset.notaAluno;
             const boxElement = this.renderBoxEdit(notaAluno);
             boxElement.style.display = 'flex';
-
+    
             btnEdit.style.display = 'none';
             btnEdit.after(boxElement);
-    
             this.boxAberto = boxElement;
             this.btnAnterior = btnEdit;
+
+            this.btnSave();
+
         }
+
+        
+
     }
+    
     
 }

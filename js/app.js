@@ -47,11 +47,13 @@ document.querySelector('tbody').addEventListener('click', function(e) {
     // alunosController.add({ nome })
 });
 
-document.querySelector('tbody').addEventListener('click', function(e) {
-    e.preventDefault();
-    alunosView.updateNota(e)
+// document.querySelector('tbody').addEventListener('click', function(e) {
+//     e.preventDefault();
+//     // console.log(e)
+//     // alunosView.updateNota(e)
 
-})
+// })
+
 
 
 
